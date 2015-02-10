@@ -16,7 +16,8 @@
 	(
 		// Users to add ports here
 		// this is the pwm signal coming in from the axi timer
-		input wire pwm_in,
+		input	wire        pwm_in,
+
 		// User ports ends
 		
 		
@@ -365,8 +366,8 @@
 	begin
 	      // Address decoding for reading registers
 	      case ( axi_araddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB] )
-	        2'h0   : reg_data_out <= slv_reg0;
-	        2'h1   : reg_data_out <= slv_reg1;
+	        2'h0   : reg_data_out <= high_total; // AXI bus output registers ties to output of 
+	        2'h1   : reg_data_out <= low_total;  // pw_det HW module (my new AXI peripheral)
 	        2'h2   : reg_data_out <= slv_reg2;
 	        2'h3   : reg_data_out <= slv_reg3;
 	        default : reg_data_out <= 0;
@@ -394,13 +395,18 @@
 
 	// Add user logic here
 	// instantiate module
-	pwm_det FREQ_COUNTER
+	
+	wire [C_S_AXI_DATA_WIDTH-1:0]	high_total;
+	wire [C_S_AXI_DATA_WIDTH-1:0]	low_total;
+	
+	
+	pw_det FREQ_COUNTER
 	(
 		.clk		(S_AXI_ACLK),
 		.rst_n		(S_AXI_ARESETN),     
 		.pwm_sig	(pwm_in),
-		.high_total	(slv_reg0),
-		.low_total	(slv_reg1)
+		.high_total	(high_total),
+		.low_total	(low_total)
 	);
 	
 	endmodule

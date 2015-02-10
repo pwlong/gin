@@ -1,0 +1,10 @@
+#-----------------------------------------------------------
+# Vivado v2014.4 (64-bit)
+# SW Build 1071353 on Tue Nov 18 18:29:27 MST 2014
+# IP Build 1070531 on Tue Nov 18 01:10:18 MST 2014
+# Start of session at: Tue Feb 10 15:14:32 2015
+# Process ID: 8972
+# Log file: c:/Users/Paul/Dropbox/1-ECE544/Projects/ip_repo/FreqCounter_1.0/freqcounter_v1_0_v1_0_project/FreqCounter_v1_0_v1_0_project.runs/synth_1/FreqCounter_v1_0.vds
+# Journal file: c:/Users/Paul/Dropbox/1-ECE544/Projects/ip_repo/FreqCounter_1.0/freqcounter_v1_0_v1_0_project/FreqCounter_v1_0_v1_0_project.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source FreqCounter_v1_0.tcl

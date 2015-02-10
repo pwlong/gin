@@ -1,0 +1,64 @@
+Copyright 1986-2014 Xilinx, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2014.4 (win64) Build 1071353 Tue Nov 18 18:29:27 MST 2014
+| Date         : Tue Feb 10 15:15:33 2015
+| Host         : porter running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file FreqCounter_v1_0_control_sets_placed.rpt
+| Design       : FreqCounter_v1_0
+| Device       : xc7a100t
+---------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Flip-Flop Distribution
+3. Detailed Control Set Information
+
+1. Summary
+----------
+
++-------------------------------------------------------------------+-------+
+|                               Status                              | Count |
++-------------------------------------------------------------------+-------+
+| Number of unique control sets                                     |    11 |
+| Minimum Number of register sites lost to control set restrictions |     7 |
++-------------------------------------------------------------------+-------+
+
+
+2. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |               2 |            2 |
+| No           | No                    | Yes                    |               0 |            0 |
+| No           | Yes                   | No                     |               7 |            1 |
+| Yes          | No                    | No                     |               0 |            0 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |              96 |           21 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+3. Detailed Control Set Information
+-----------------------------------
+
++-------------------------+----------------------------------------------------+--------------------------------------------------+------------------+----------------+
+|       Clock Signal      |                    Enable Signal                   |                 Set/Reset Signal                 | Slice Load Count | Bel Load Count |
++-------------------------+----------------------------------------------------+--------------------------------------------------+------------------+----------------+
+|  s00_axi_aclk_IBUF_BUFG |                                                    |                                                  |                2 |              2 |
+|  s00_axi_aclk_IBUF_BUFG |                                                    | FreqCounter_v1_0_S00_AXI_inst/FREQ_COUNTER/SR[0] |                1 |              7 |
+|  s00_axi_aclk_IBUF_BUFG | FreqCounter_v1_0_S00_AXI_inst/n_0_slv_reg2[15]_i_1 | FreqCounter_v1_0_S00_AXI_inst/FREQ_COUNTER/SR[0] |                2 |              8 |
+|  s00_axi_aclk_IBUF_BUFG | FreqCounter_v1_0_S00_AXI_inst/n_0_slv_reg2[23]_i_1 | FreqCounter_v1_0_S00_AXI_inst/FREQ_COUNTER/SR[0] |                1 |              8 |
+|  s00_axi_aclk_IBUF_BUFG | FreqCounter_v1_0_S00_AXI_inst/n_0_slv_reg2[31]_i_1 | FreqCounter_v1_0_S00_AXI_inst/FREQ_COUNTER/SR[0] |                1 |              8 |
+|  s00_axi_aclk_IBUF_BUFG | FreqCounter_v1_0_S00_AXI_inst/n_0_slv_reg2[7]_i_1  | FreqCounter_v1_0_S00_AXI_inst/FREQ_COUNTER/SR[0] |                2 |              8 |
+|  s00_axi_aclk_IBUF_BUFG | FreqCounter_v1_0_S00_AXI_inst/n_0_slv_reg3[15]_i_1 | FreqCounter_v1_0_S00_AXI_inst/FREQ_COUNTER/SR[0] |                1 |              8 |
+|  s00_axi_aclk_IBUF_BUFG | FreqCounter_v1_0_S00_AXI_inst/n_0_slv_reg3[23]_i_1 | FreqCounter_v1_0_S00_AXI_inst/FREQ_COUNTER/SR[0] |                1 |              8 |
+|  s00_axi_aclk_IBUF_BUFG | FreqCounter_v1_0_S00_AXI_inst/n_0_slv_reg3[31]_i_1 | FreqCounter_v1_0_S00_AXI_inst/FREQ_COUNTER/SR[0] |                1 |              8 |
+|  s00_axi_aclk_IBUF_BUFG | FreqCounter_v1_0_S00_AXI_inst/n_0_slv_reg3[7]_i_1  | FreqCounter_v1_0_S00_AXI_inst/FREQ_COUNTER/SR[0] |                2 |              8 |
+|  s00_axi_aclk_IBUF_BUFG | FreqCounter_v1_0_S00_AXI_inst/slv_reg_rden         | FreqCounter_v1_0_S00_AXI_inst/FREQ_COUNTER/SR[0] |               10 |             32 |
++-------------------------+----------------------------------------------------+--------------------------------------------------+------------------+----------------+
+
+

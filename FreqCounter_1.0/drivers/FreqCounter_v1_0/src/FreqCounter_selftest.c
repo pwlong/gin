@@ -22,7 +22,7 @@
  * @return
  *
  *    - XST_SUCCESS   if all self-test code passed
- *    - XST_FAILURE   if any self-test code failed
+ *    - XST_FAILURE   if any self-test code failed (function returns at first failure)
  *
  * @note    Caching must be turned off for this function to work.
  * @note    Self test may fail if data memory and device are not on the same bus.
