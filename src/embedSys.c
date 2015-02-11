@@ -20,6 +20,17 @@
 #include "PMod544IOR2.h"
 #include "pwm_tmrctr.h"
 
+
+// Define Parameters
+#define epsilon 	0.01
+#define dt 			0.01 //100mslooptime
+#define MAX 		4 //ForCurrent Saturation
+#define MIN 		-4
+#define Kp 			0.1
+#define Kd 			0.01
+#define Ki 			0.005
+
+
 /***************** Debug Flag ************************************************/					
 int debugen = 0;		
 
@@ -27,6 +38,7 @@ int debugen = 0;
 int readVal(void);
 void delay_msecs(unsigned int);
 void update_lcd(int, int, u32);
+float PID_I_D(float, float);
 
 
 /***************** Global Variables ******************************************/	
@@ -40,6 +52,21 @@ int main(void){
 
 }
 
+
+/****************************************************************************
+*
+****************************************************************************/
+float bangBang(float setPoint, float realPoint) {
+
+	float output;
+
+	
+	return output;
+}
+
+/****************************************************************************
+*
+****************************************************************************/
 float PID_I_D(float setPoint, float realPoint) {
 
 	static float pre_error = 0;
@@ -72,6 +99,9 @@ float PID_I_D(float setPoint, float realPoint) {
 	return output;
 }
 
+/****************************************************************************
+*
+****************************************************************************/
 int readVal(void) {
 	// get the value from the sensor
 
