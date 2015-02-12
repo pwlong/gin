@@ -30,6 +30,19 @@
 #define Kd 			0.01
 #define Ki 			0.005
 
+// Modes of Operation
+#define bang_bang 	0x0
+#define PID 		0x1
+#define extraCred 	0x2
+#define inVsOut 	0x3
+
+
+#define bbOn 		99
+#define bbOff 		1
+
+#define maxVolts 	3.3
+
+
 
 /***************** Debug Flag ************************************************/					
 int debugen = 0;		
@@ -44,7 +57,7 @@ float PID_I_D(float, float);
 
 /***************** Global Variables ******************************************/	
 volatile unsigned long	timestamp;			// timestamp since the program began
-
+volatile float 			setPointVolts;
 
 
 int main(void){
@@ -52,10 +65,6 @@ int main(void){
 	u16			sw, oldSw =0xFFFF;		// 0xFFFF is invalid - makes sure the PWM freq is updated the first time
 	int			rotcnt, oldRotcnt = 0x1000;	
 	bool		done = false;
-	
-	volatile u32 HW_highT, HW_lowT;
-	u32 HW_Frequency, HW_DutyCycle;
-	u32 SW_Frequency, SW_DutyCycle;
 
 	init_platform();
 
@@ -113,15 +122,11 @@ int main(void){
 			new_perduty = false;
 			sw = NX4IO_getSwitches();
 			if (sw != oldSw) {
-				switch (sw & PWM_FREQ_MSK) {
-					case 0x00:	pwm_freq = PWM_FREQ_10HZ;	break;
-					case 0x01:	pwm_freq = PWM_FREQ_100HZ;	break;
-					case 0x02:	pwm_freq = PWM_FREQ_1KHZ;	break;
-					case 0x03:	pwm_freq = PWM_FREQ_10KHZ;	break;
-					case 0x04:	pwm_freq = PWM_FREQ_50KHZ;	break;
-					case 0x05:	pwm_freq = PWM_FREQ_100KHZ;	break;
-					case 0x06:	pwm_freq = PWM_FREQ_200KHZ;	break;
-					case 0x07:	pwm_freq = PWM_FREQ_500KHZ;	break;
+				switch (sw & 0x3) {
+					case 0x00:	Mode = bang_bang;	break;
+					case 0x01:	Mode = PID;			break;
+					case 0x02:	Mode = extraCred;	break;
+					case 0x03:	Mode = inVsOut;		break;
 				}
 
 				oldSw = sw;
@@ -175,8 +180,6 @@ int main(void){
 	PMDIO_LCD_clrd();
 	cleanup_platform();
 	exit(0);
-
-
 }
 
 /**************************** HELPER FUNCTIONS ******************************/
@@ -284,7 +287,19 @@ float bangBang(float setPoint, float realPoint) {
 
 	float output;
 
-	
+	// setPoint = read to get value from the driver
+	while (1) {
+		delay_msecs(100);
+		// realPoint = read to get value from the driver
+		setPointVolts = ((setPoint * maxVolts) / 100);
+
+		if (realPoint < setPointVolts) {
+			// drive signal bbOn
+		}
+		else if (realPoint > setPointVolts) {
+			// drive signal bbOff
+		}
+	}
 	return output;
 }
 
@@ -330,7 +345,7 @@ float PID_I_D(float setPoint, float realPoint) {
 int readVal(void) {
 	// get the value from the sensor
 
-	//return value
+	// return value
 }
  
 /****************************************************************************/
